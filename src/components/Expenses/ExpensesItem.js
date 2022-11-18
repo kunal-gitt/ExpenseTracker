@@ -1,27 +1,30 @@
 import React from "react";
-import ExpenseDate from "./ExpenseDate";
-import ExpenseDetails from "./ExpenseDetails";
+import ExpenseDate from "../Expenses/ExpenseDate";
+import ExpenseDetails from "../Expenses/ExpenseDetails";
+import Card from "../UI/Card";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
-  return React.createElement(
-    ExpenseDate,
-    { date: props.date },
-    React.createElement("div", {}),
-    React.createElement("h1", {}, "Expense1"),
-    React.createElement("h1", {}, "Expense 1")
+  const clickhandler = () => {
+    console.log("CLicked...");
+  };
+
+  const deletehandler = () => {
+    console.log("Deleted...");
+  };
+
+  return (
+    <Card className="expense-item">
+      <ExpenseDate date={props.date}></ExpenseDate>
+      <ExpenseDetails
+        title={props.title}
+        amount={props.amount}
+      ></ExpenseDetails>
+
+      <button onClick={clickhandler}>Click me!</button>
+      <button onClick={deletehandler}>Delete expense</button>
+    </Card>
   );
 };
-//   return (
-//     <div className="expense-item">
-//       <ExpenseDate date={props.date}></ExpenseDate>
-//       <ExpenseDetails
-//         title={props.title}
-//         amount={props.amount}
-//         LocationOfExpenditure={props.LocationOfExpenditure}
-//       ></ExpenseDetails>
-//     </div>
-//   );
-// }
 
 export default ExpenseItem;
