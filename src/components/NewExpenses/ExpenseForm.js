@@ -7,12 +7,6 @@ const ExpenseForm = (props) => {
   const [enteredamount, setenteredamount] = useState("");
   const [entereddate, setentereddate] = useState("");
 
-  // const [userinput , setuserinput] = useState({
-  //   enteredtitle: '',
-  //   enteredamount: '',
-  //   entereddate: ''
-  // })
-
   const titlechangehandler = (event) => {
     setenteredtitle(event.target.value);
   };
@@ -34,7 +28,10 @@ const ExpenseForm = (props) => {
       date: new Date(entereddate),
     };
 
-    console.log(expensedata);
+    props.onSaveExpenseData(expensedata);
+    setenteredtitle("");
+    setenteredamount("");
+    setentereddate("");
   };
 
   return (
@@ -42,7 +39,11 @@ const ExpenseForm = (props) => {
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titlechangehandler} />
+          <input
+            type="text"
+            value={enteredtitle}
+            onChange={titlechangehandler}
+          />
         </div>
 
         <div className="new-expense__control">
@@ -51,6 +52,7 @@ const ExpenseForm = (props) => {
             type="number"
             min="0.01"
             step="0.01"
+            value={enteredamount}
             onChange={amountchangehandler}
           />
         </div>
@@ -61,6 +63,7 @@ const ExpenseForm = (props) => {
             type="date"
             min="2023-01-01"
             max="2023-12-31"
+            value={entereddate}
             onChange={datechangehandler}
           />
         </div>
