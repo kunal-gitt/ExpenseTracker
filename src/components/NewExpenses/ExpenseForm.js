@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Expenseform.css";
 
-const ExpenseForm = (props) => {
+const ExpenseForm = () => {
   const titlechangehandler = (event) => {
     console.log(event.target.value);
   };
